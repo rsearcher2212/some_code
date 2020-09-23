@@ -11,3 +11,24 @@ blocks:
         - name: 'Job #1'
           commands:
             - checkout
+  - name: Checkout
+    task:
+      prologue:
+        commands:
+          - echo "hello"
+      epilogue:
+        on_pass:
+          commands:
+            - echo "yay passes"
+        on_fail:
+          commands:
+            - echo "NUUUUUUU"
+      jobs:
+        - name: 'Job #1'
+          commands:
+            - 'git clone https://github.com/rsearcher2212/some_code.git'
+  - name: 'Block #3'
+    task:
+      jobs:
+        - name: 'Job #1'
+          commands: []
